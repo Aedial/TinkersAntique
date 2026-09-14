@@ -57,7 +57,8 @@ public final class Config {
   public static boolean modifierChisels = true;
   public static boolean modifierChiselsSingleUse = false;
   private static String[] modifierChiselModifierBlacklistArray = {
-      "toolleveling"
+      "toolleveling",   // Tinkers Tool Leveling mod
+      "extramodifier"   // Endearment modifier (Ender Dragon head)
   };
   private static String[] embossmentChiselMaterialBlacklistArray = {
   };

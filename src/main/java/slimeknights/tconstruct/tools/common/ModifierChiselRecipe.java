@@ -19,6 +19,7 @@ import slimeknights.tconstruct.library.utils.Tags;
 import slimeknights.tconstruct.library.utils.TinkerUtil;
 import slimeknights.tconstruct.library.utils.ToolBuilder;
 import slimeknights.tconstruct.tools.modifiers.ModExtraTrait;
+import slimeknights.tconstruct.tools.modifiers.ModReinforced;
 
 public class ModifierChiselRecipe extends ChiselRecipe {
 
@@ -50,6 +51,12 @@ public class ModifierChiselRecipe extends ChiselRecipe {
         protectedModifiers.appendTag(new NBTTagString(identifier));
       }
       else {
+        if(modifier instanceof ModReinforced && ModReinforced.isUnbreakable(TinkerUtil.getModifierTag(root, identifier))) {
+          // The Unbreakable tag is not cleaned in RebuildTool, so we need to clean it here
+          // We only remove it if it was introduced by the Reinforced modifier,
+          // to not remove any Unbreakable tag that was set manually
+          root.removeTag(ModReinforced.TAG_UNBREAKABLE);
+        }
         removedModifier = true;
       }
     }
